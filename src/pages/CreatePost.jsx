@@ -6,13 +6,12 @@ const CreatePost = () => {
     const [formData, setFormData] = useState({
         title: '',
         content: '',
-        image: '',
-        video: ''
+        image: ''
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const { title, content, image, video } = formData;
+    const { title, content, image } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -55,18 +54,7 @@ const CreatePost = () => {
                     />
                 </div>
 
-                <div>
-                    <label htmlFor="video" className="block text-sm font-medium text-gray-700">Video URL (Optional)</label>
-                    <input
-                        type="text"
-                        name="video"
-                        id="video"
-                        value={video}
-                        onChange={onChange}
-                        placeholder="YouTube URL or MP4 link"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-                </div>
+
 
                 <div>
                     <label htmlFor="content" className="block text-sm font-medium text-gray-700">Content</label>

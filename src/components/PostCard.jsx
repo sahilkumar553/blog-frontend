@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 const PostCard = ({ post }) => {
     return (
         <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full transform hover:-translate-y-1">
-            {post.image ? (
+            {post.image && (
                 <div className="relative h-56 overflow-hidden group">
                     <img
                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
@@ -13,28 +13,7 @@ const PostCard = ({ post }) => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-            ) : post.video ? (
-                <div className="relative h-56 bg-gray-900 flex items-center justify-center overflow-hidden group">
-                    {post.video.includes('youtube.com') || post.video.includes('youtu.be') ? (
-                        <div className="w-full h-full relative">
-                            <img
-                                src={`https://img.youtube.com/vi/${post.video.split('v=')[1]?.split('&')[0] || post.video.split('/').pop()}/0.jpg`}
-                                alt={post.title}
-                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <svg className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                                </svg>
-                            </div>
-                        </div>
-                    ) : (
-                        <video className="w-full h-full object-cover opacity-90">
-                            <source src={post.video} type="video/mp4" />
-                        </video>
-                    )}
-                </div>
-            ) : null}
+            )}
             <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-2">
