@@ -79,7 +79,7 @@ const PostDetails = () => {
         <div className="min-h-screen bg-gray-50/50 py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-                    {post.image && (
+                    {post.image ? (
                         <div className="w-full h-[400px] relative bg-gray-100">
                             <img
                                 className="w-full h-full object-contain bg-gray-900"
@@ -87,7 +87,25 @@ const PostDetails = () => {
                                 alt={post.title}
                             />
                         </div>
-                    )}
+                    ) : post.video ? (
+                        <div className="w-full h-[400px] relative bg-gray-900 flex items-center justify-center">
+                            {post.video.includes('youtube.com') || post.video.includes('youtu.be') ? (
+                                <iframe
+                                    className="w-full h-full"
+                                    src={post.video.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            ) : (
+                                <video controls className="w-full h-full max-h-[400px]">
+                                    <source src={post.video} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            )}
+                        </div>
+                    ) : null}
 
                     <div className="px-8 py-10 sm:px-12">
                         <div className="border-b border-gray-100 pb-8 mb-8">
